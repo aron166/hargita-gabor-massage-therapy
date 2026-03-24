@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hargita Gábor gyógymasszőr, csontkovács és manuálterapeuta Budapest VII. kerületében. Shaolin alapú manuálterápia, gyógymasszázs, gerinc- és ízületi kezelések. +36 30 527 2245">
+  <meta name="theme-color" content="#F6F1EA">
+  <title>Hargita Gábor – Gyógymasszőr · Csontkovács · Manuálterapeuta · Budapest</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       ============================================================ */
+    :root {
+      --bg:            #F6F1EA;
+      --bg-card:       #EDE7DC;
+      --bg-section:    #EBE4D7;
+      --bg-dark:       #1C1812;
+      --text-primary:  #1C1812;
+      --text-secondary:#46392A;
+      --text-muted:    #7A6E5E;
+      --accent:        #3D4E22;
+      --accent-hover:  #4F6430;
+      --stone:         #8C7A5E;
+      --gold:          #C8A96B;
+      --border:        #CEC3AE;
+      --border-light:  #E0D9CE;
+      --white:         #FDFAF5;
+
+      --font-display:  'Cormorant Garamond', Georgia, serif;
+      --font-body:     'Lora', Georgia, serif;
+
+      --space-xs:   8px;
+      --space-sm:   16px;
+      --space-md:   24px;
+      --space-lg:   40px;
+      --space-xl:   64px;
+      --space-2xl:  96px;
+
+      --radius-sm:  4px;
+      --radius-md:  10px;
+      --radius-lg:  18px;
+
+      --shadow-sm:  0 1px 4px rgba(28,24,18,0.07);
+      --shadow-md:  0 4px 20px rgba(28,24,18,0.10);
+      --shadow-lg:  0 8px 40px rgba(28,24,18,0.12);
+
+      --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+      --max-w:      1160px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.12;
+    }
+
+    h1 { font-size: clamp(3.25rem, 9vw, 7rem); letter-spacing: -0.015em; }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.25rem); letter-spacing: -0.01em; }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    section { padding: var(--space-2xl) 0; }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 18px var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    }
+
+    .nav.scrolled {
+      background: rgba(246, 241, 234, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border-light);
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      transition: color 0.25s;
+      padding: 6px 0;
+      touch-action: manipulation;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--text-primary);
+      touch-action: manipulation;
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      touch-action: manipulation;
+      min-height: 52px;
+      white-space: nowrap;
+      border: none;
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--text-secondary);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       SECTION HEADER
+       ============================================================ */
+    .section-header { margin-bottom: var(--space-xl); }
+
+    .section-tag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem);
+      font-weight: 400;
+      color: var(--text-primary);
+      max-width: 20ch;
+      line-height: 1.18;
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 80px;
+      padding-bottom: var(--space-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative large circle */
+    .hero-orb {
+      position: absolute;
+      top: -10%;
+      right: -8%;
+      width: min(55vw, 680px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 40% 40%, rgba(61,78,34,0.07) 0%, transparent 68%);
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    /* Thin horizontal rule above hero text */
+    .hero-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--border-light);
+      margin-bottom: var(--space-xl);
+      opacity: 0;
+      animation: fadeIn 1s var(--ease-out) 0.05s forwards;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.75s var(--ease-out) 0.15s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-weight: 300;
+      margin-bottom: var(--space-sm);
+      opacity: 0;
+      transform: translateY(22px);
+      animation: fadeUp 0.85s var(--ease-out) 0.28s forwards;
+    }
+
+    .hero-name-em {
+      font-weight: 500;
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.75s var(--ease-out) 0.42s forwards;
+    }
+
+    .hero-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--stone);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.7s var(--ease-out) 0.54s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.7s var(--ease-out) 0.66s forwards;
+    }
+
+    /* ============================================================
+       SERVICES
+       ============================================================ */
+    .services { background: var(--bg-section); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl) var(--space-lg);
+      transition: box-shadow 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      color: var(--accent);
+      margin-bottom: var(--space-lg);
+    }
+
+    .service-sep {
+      width: 28px;
+      height: 1px;
+      background: var(--border);
+      margin: var(--space-md) 0;
+    }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+    }
+
+    .service-desc {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: none;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+       ============================================================ */
+    .testimonials-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: var(--space-xl);
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .testimonials-score {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .score-number {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1;
+      display: block;
+    }
+
+    .score-stars {
+      display: flex;
+      gap: 4px;
+      justify-content: flex-end;
+      margin: 6px 0 4px;
+    }
+
+    .score-stars svg { width: 14px; height: 14px; fill: var(--gold); }
+
+    .score-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg) var(--space-xl);
+      transition: box-shadow 0.3s;
+    }
+
+    .testimonial-card:hover { box-shadow: var(--shadow-sm); }
+
+    .t-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+
+    .t-stars svg { width: 13px; height: 13px; fill: var(--gold); }
+
+    .t-quote {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1.65;
+      margin-bottom: var(--space-md);
+      max-width: none;
+    }
+
+    .t-author {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .about { background: var(--bg-section); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .about-photo { position: relative; }
+
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(150deg, rgba(61,78,34,0.05) 0%, transparent 55%);
+    }
+
+    .photo-initials {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.875rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      z-index: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .photo-hint {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      z-index: 1;
+    }
+
+    /* Offset decorative border */
+    .photo-frame {
+      position: absolute;
+      bottom: -14px;
+      right: -14px;
+      width: 55%;
+      height: 55%;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .about-text h2 { margin-bottom: var(--space-lg); }
+    .about-text p  { margin-bottom: var(--space-md); max-width: 58ch; }
+
+    .about-stats {
+      display: flex;
+      gap: var(--space-xl);
+      margin-top: var(--space-xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .contact-item {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .c-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .c-icon svg { width: 18px; height: 18px; }
+
+    .c-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .c-value {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .c-value a { transition: color 0.25s; }
+    .c-value a:hover { color: var(--accent); }
+
+    .c-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .contact-note {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--text-muted);
+      padding: var(--space-md) var(--space-md);
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--accent);
+      line-height: 1.7;
+    }
+
+    .contact-map {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      min-height: 400px;
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      min-height: 400px;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: var(--bg-dark);
+      padding: var(--space-lg) 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: rgba(253,250,245,0.8);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(253,250,245,0.4);
+    }
+
+    .footer-fb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: rgba(253,250,245,0.45);
+      transition: color 0.25s;
+      touch-action: manipulation;
+      padding: 6px 0;
+    }
+
+    .footer-fb:hover { color: rgba(253,250,245,0.85); }
+
+    /* ============================================================
+       SCROLL REVEAL ANIMATIONS
+       ============================================================ */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — TABLET (≤1024px)
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr 1.6fr;
+        gap: var(--space-xl);
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE (≤768px)
+       ============================================================ */
+    @media (max-width: 768px) {
+      :root {
+        --space-xl:  48px;
+        --space-2xl: 72px;
+      }
+
+      section { padding: 72px 0; }
+
+      /* Mobile nav */
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xl);
+        z-index: 150;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        font-family: var(--font-display);
+        font-size: 1.875rem;
+        font-weight: 400;
+        color: var(--text-primary);
+        letter-spacing: 0;
+      }
+
+      .nav-toggle { display: flex; z-index: 160; position: relative; }
+
+      .nav-right .btn-primary { display: none; }
+
+      /* Sections */
+      .services-grid { grid-template-columns: 1fr; }
+
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .testimonials-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .testimonials-score { text-align: left; }
+      .score-stars { justify-content: flex-start; }
+
+      .about-inner { grid-template-columns: 1fr; }
+
+      .photo-placeholder { aspect-ratio: 4 / 3; max-height: 260px; }
+
+      .about-stats { gap: var(--space-lg); flex-wrap: wrap; }
+
+      .contact-inner { grid-template-columns: 1fr; }
+
+      .contact-map { height: 300px; min-height: 300px; }
+      .contact-map iframe { min-height: 300px; }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn { max-width: 360px; width: 100%; justify-content: center; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — SMALL MOBILE (≤480px)
+       ============================================================ */
+    @media (max-width: 480px) {
+      .container { padding: 0 var(--space-sm); }
+      .service-card { padding: var(--space-lg) var(--space-md); }
+      .testimonial-card { padding: var(--space-md); }
+      .contact-list { gap: var(--space-md); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" id="mainNav" aria-label="Főnavigáció">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max-w);padding:0 var(--space-md);">
+      <a href="#fooldal" class="nav-brand" aria-label="Hargita Gábor – főoldal">Hargita Gábor</a>
+
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#szolgaltatasok">Szolgáltatások</a></li>
+        <li><a href="#velemenyek">Vélemények</a></li>
+        <li><a href="#rolam">Rólam</a></li>
+        <li><a href="#kapcsolat">Kapcsolat</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="https://calendly.com/jegesmedve06/30min" class="btn btn-primary" aria-label="Időpontfoglalás – +36 30 527 2245">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.22 2.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.58-1.58a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          Időpontot kérek
+        </a>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Navigáció megnyitása"
+          aria-expanded="false"
+          aria-controls="navLinks"
+          type="button"
+        >
+          <svg id="iconMenu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <line x1="3" y1="7" x2="21" y2="7"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="17" x2="21" y2="17"/>
+          </svg>
+          <svg id="iconClose" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="display:none">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="fooldal" aria-labelledby="heroHeading">
+    <div class="hero-orb" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-rule" aria-hidden="true"></div>
+
+      <p class="hero-eyebrow" aria-hidden="true">Gyógymasszőr · Budapest VII.</p>
+
+      <h1 id="heroHeading">
+        <span style="display:block; font-weight:300;">Hargita</span>
+        <span class="hero-name-em">Gábor</span>
+      </h1>
+
+      <p class="hero-subtitle">Gyógymasszőr · Csontkovács · Manuálterapeuta</p>
+
+      <p class="hero-location">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        Budapest VII. kerület · Péterfy Sándor u. 9.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://calendly.com/jegesmedve06/30min" class="btn btn-primary" aria-label="Felhívás időpontfoglaláshoz: +36 30 527 2245">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.22 2.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.58-1.58a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          Időpontot kérek
+        </a>
+        <a href="#szolgaltatasok" class="btn btn-ghost">Szolgáltatások</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SERVICES
+       ============================================================ -->
+  <section class="services" id="szolgaltatasok" aria-labelledby="servicesHeading">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <p class="section-tag">Kezelések</p>
+        <h2 class="section-title" id="servicesHeading">Miben tudok<br>segíteni</h2>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Gyógymasszázs -->
+        <article class="service-card reveal reveal-d1">
+          <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 34 C10 28 14 22 22 22 C30 22 34 28 34 34"/>
+            <path d="M16 22 C14 18 14 12 18 9 C22 6 26 8 27 12"/>
+            <path d="M28 22 C30 18 30 12 26 9"/>
+            <circle cx="22" cy="8" r="2.5"/>
+            <path d="M14 34 Q22 30 30 34"/>
+          </svg>
+          <div class="service-sep" aria-hidden="true"></div>
+          <h3 class="service-name">Gyógymasszázs</h3>
+          <p class="service-desc">Izomfeszültség, krónikus fájdalmak és sportterhelés utáni regeneráció kezelése mélyszöveti technikákkal. Célzott masszázs, amely nem csupán enyhíti, hanem megszünteti a tünetek okát.</p>
+        </article>
+
+        <!-- Csontkovács -->
+        <article class="service-card reveal reveal-d2">
+          <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="5" x2="22" y2="39"/>
+            <path d="M15 10 Q8 16 8 22 Q8 28 15 34"/>
+            <path d="M29 10 Q36 16 36 22 Q36 28 29 34"/>
+            <circle cx="22" cy="9"  r="2.8"/>
+            <circle cx="22" cy="22" r="2.8"/>
+            <circle cx="22" cy="35" r="2.8"/>
+          </svg>
+          <div class="service-sep" aria-hidden="true"></div>
+          <h3 class="service-name">Csontkovács<br>· Manuálterápia</h3>
+          <p class="service-desc">Shaolin harcművészeti hagyományokon alapuló ízületi manipuláció és gerinckezelés. Precíz, kézi technikák a mozgásszabadság visszaállítására és a tartós fájdalommentesség eléréséhez.</p>
+        </article>
+
+        <!-- Komplex -->
+        <article class="service-card reveal reveal-d3">
+          <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="22" cy="22" r="15"/>
+            <path d="M14 22 Q18 15 22 22 Q26 29 30 22"/>
+            <line x1="22" y1="7"  x2="22" y2="11"/>
+            <line x1="22" y1="33" x2="22" y2="37"/>
+            <line x1="7"  y1="22" x2="11" y2="22"/>
+            <line x1="33" y1="22" x2="37" y2="22"/>
+          </svg>
+          <div class="service-sep" aria-hidden="true"></div>
+          <h3 class="service-name">Komplex kezelés</h3>
+          <p class="service-desc">A két módszer ötvözése egyéni igények alapján: alapos állapotfelmérés után személyre szabott kezelési terv a legjobb és legtartósabb eredményért.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TESTIMONIALS
+       ============================================================ -->
+  <section id="velemenyek" aria-labelledby="testimonialsHeading">
+    <div class="container">
+
+      <div class="testimonials-header">
+        <div class="section-header reveal" style="margin-bottom:0">
+          <p class="section-tag">Vélemények</p>
+          <h2 class="section-title" id="testimonialsHeading">Amit pácienseim<br>mondanak</h2>
+        </div>
+        <div class="testimonials-score reveal reveal-d2" aria-label="Értékelés: 5.0 / 5 – 25 értékelés alapján, Facebook">
+          <span class="score-number" aria-hidden="true">5.0</span>
+          <div class="score-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="score-label">25 értékelés · Facebook · 100% ajánlja</p>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <article class="testimonial-card reveal reveal-d1">
+          <div class="t-stars" aria-label="5 csillag">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="t-quote">„Évek óta küzdöttem derékfájással, és semmi sem segített tartósan. Gábornál két kezelés után éreztem a különbséget. Nem túlzás azt mondani, hogy visszakaptam az életminőségemet."</p>
+          <p class="t-author">Kovács Péter, 47 éves</p>
+        </article>
+
+        <article class="testimonial-card reveal reveal-d2">
+          <div class="t-stars" aria-label="5 csillag">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="t-quote">„Profi, precíz, és látszik, hogy igazán érti, amit csinál. A nyakfájdalmaim megszűntek, a mozgástartományom visszaállt. Mindenkinek csak ajánlani tudom, aki valódi megoldást keres."</p>
+          <p class="t-author">Szabó Anna, 38 éves</p>
+        </article>
+
+        <article class="testimonial-card reveal reveal-d3">
+          <div class="t-stars" aria-label="5 csillag">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="t-quote">„Hatalmas fájdalomban érkeztem, szinte nem bírtam egyenesen állni. Az első kezelés után hazasétálva éreztem, hogy valami alapvetően megváltozott. Gábor kezei csodát tesznek."</p>
+          <p class="t-author">Nagy Balázs, 52 éves</p>
+        </article>
+
+        <article class="testimonial-card reveal reveal-d4">
+          <div class="t-stars" aria-label="5 csillag">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="t-quote">„Évek óta járok Gáborhoz rendszeresen. Nemcsak a kezelés minőségét, hanem azt is értékelem, hogy minden alkalommal időt vesz rám és megérteti, mit csinál és miért. Ez ma ritka."</p>
+          <p class="t-author">Tóth Mária, 61 éves</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="about" id="rolam" aria-labelledby="aboutHeading">
+    <div class="container">
+      <div class="about-inner">
+
+        <div class="about-photo reveal">
+          <div
+            class="photo-placeholder"
+            role="img"
+            aria-label="Hargita Gábor gyógymasszőr portréfotójának helye"
+          >
+            <div class="photo-initials" aria-hidden="true">HG</div>
+            <p class="photo-hint" aria-hidden="true">Portréfotó</p>
+          </div>
+          <div class="photo-frame" aria-hidden="true"></div>
+        </div>
+
+        <div class="about-text">
+          <div class="section-header reveal">
+            <p class="section-tag">Rólam</p>
+            <h2 id="aboutHeading">Több évtizednyi<br>tapasztalat</h2>
+          </div>
+
+          <p class="reveal reveal-d1">
+            Több évtizedes tapasztalattal és shaolin harcművészeti hagyományokon alapuló technikával segítek visszaszerezni a mozgásszabadságot és megszüntetni a tartós fájdalmakat.
+          </p>
+
+          <p class="reveal reveal-d2">
+            Munkám gerincét a manuálterápia és a csontkovács-kezelés alkotja: precíz, kézzel végzett beavatkozások, amelyek közvetlenül hatnak az ízületekre, a gerincre és az izmokra. Nem sémák szerint dolgozom — minden pácienst egyénileg vizsgálok meg, és csak utána alakítom ki a kezelési tervet.
+          </p>
+
+          <p class="reveal reveal-d3">
+            Rendelőm Budapest szívében, a VII. kerületben, a Péterfy Sándor utca 9. szám alatt található. Bejelentkezés telefonon vagy emailben.
+          </p>
+
+          <div class="about-stats reveal reveal-d4">
+            <div>
+              <span class="stat-val">25+</span>
+              <p class="stat-lbl">5 csillagos értékelés</p>
+            </div>
+            <div>
+              <span class="stat-val">100%</span>
+              <p class="stat-lbl">Ajánlási arány</p>
+            </div>
+            <div>
+              <span class="stat-val">VII.</span>
+              <p class="stat-lbl">kerület, Budapest</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section id="kapcsolat" aria-labelledby="contactHeading">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <p class="section-tag">Kapcsolat</p>
+        <h2 class="section-title" id="contactHeading">Foglaljon időpontot</h2>
+      </div>
+
+      <div class="contact-inner">
+
+        <div class="contact-list">
+
+          <div class="contact-item reveal">
+            <div class="c-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.22 2.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.58-1.58a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="c-label">Telefon</p>
+              <p class="c-value"><a href="tel:+36305272245" aria-label="Hívás: +36 30 527 2245">+36 30 527 2245</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item reveal reveal-d1">
+            <div class="c-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <p class="c-label">Email</p>
+              <p class="c-value"><a href="mailto:gabehargita@gmail.com">gabehargita@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item reveal reveal-d2">
+            <div class="c-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="c-label">Cím</p>
+              <p class="c-value">Péterfy Sándor u. 9.</p>
+              <p class="c-sub">Budapest VII. kerület</p>
+            </div>
+          </div>
+
+          <p class="contact-note reveal reveal-d3">
+            Bejelentkezés telefonon vagy emailben. Időpont egyeztetés előzetes bejelentkezés alapján.
+          </p>
+
+          <a
+            href="https://calendly.com/jegesmedve06/30min"
+            class="btn btn-primary reveal reveal-d4"
+            aria-label="Időpontfoglalás telefonon: +36 30 527 2245"
+            style="align-self:flex-start;"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11 19.79 19.79 0 01.22 2.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.58-1.58a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            Időpontot kérek
+          </a>
+
+        </div>
+
+        <!-- Google Maps embed -->
+        <div class="contact-map reveal reveal-d2">
+          <iframe
+            src="https://maps.google.com/maps?q=P%C3%A9terfy+S%C3%A1ndor+utca+9+Budapest+VII&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            title="Hargita Gábor rendelőjének helyszíne – Péterfy Sándor u. 9., Budapest VII."
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-brand">Hargita Gábor · Gyógymasszőr</p>
+        <p class="footer-copy">© 2025 Hargita Gábor. Minden jog fenntartva.</p>
+        <a
+          href="https://www.facebook.com/hargita.gabor"
+          class="footer-fb"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Hargita Gábor Facebook oldala – új ablakban nyílik meg"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+          </svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Nav: scroll effect ---- */
+      var nav = document.getElementById('mainNav');
+      function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 48);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ---- Nav: mobile toggle ---- */
+      var toggle   = document.getElementById('navToggle');
+      var links    = document.getElementById('navLinks');
+      var iconMenu  = document.getElementById('iconMenu');
+      var iconClose = document.getElementById('iconClose');
+
+      toggle.addEventListener('click', function () {
+        var isOpen = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+        iconMenu.style.display  = isOpen ? 'none'  : 'block';
+        iconClose.style.display = isOpen ? 'block' : 'none';
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          iconMenu.style.display  = 'block';
+          iconClose.style.display = 'none';
+          document.body.style.overflow = '';
+        });
+      });
+
+      /* ---- Scroll reveal ---- */
+      var reveals = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -56px 0px' });
+
+        reveals.forEach(function (el) { io.observe(el); });
+      } else {
+        /* Fallback for older browsers */
+        reveals.forEach(function (el) { el.classList.add('visible'); });
+      }
+    })();
+  </script>
+
+</body>
+</html>
